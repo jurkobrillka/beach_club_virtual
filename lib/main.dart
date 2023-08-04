@@ -1,4 +1,4 @@
-import 'dart:html';
+
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -144,7 +144,7 @@ class _FirstIdeasTest extends State<FirstIdeas> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       final double centerPosition =
           _scrollController.position.maxScrollExtent / 2;
       _scrollController.animateTo(centerPosition,
@@ -367,7 +367,7 @@ Widget ButtonSidesCard({required SidesCardItem item}) =>
                 Expanded(
                   flex: 1,
                   child: Container(
-
+//testik vymaz
                       alignment: Alignment.center,
                       padding: EdgeInsets.only(left: 15, right: 15),
                       child: Column(
