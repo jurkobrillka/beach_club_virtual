@@ -9,104 +9,6 @@ void main() {
   ))); //running the app and we are passing ROOT WIDGET
 }
 
-class TestContainer extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        color: Colors.green[100],
-        child: Text("Hello"),
-        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-        margin: EdgeInsets.all(40),
-      ),
-    );
-  }
-}
-
-class RowsTest extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            margin: EdgeInsets.all(10),
-            child: Text("tsest"),
-          ),
-          Padding(
-            padding: EdgeInsets.all(20),
-            child: TextButton(
-              onPressed: () {
-                print("Butt row");
-              },
-              child: Text("Click butt in row",
-                  style: TextStyle(fontSize: 10, color: Colors.green)),
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.all(5),
-            color: Colors.purple[100],
-            child: Text("Inside cont"),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Container(
-              width: MediaQuery.of(context).size.width * 0.4,
-              height: MediaQuery.of(context).size.height * 0.2,
-              decoration: BoxDecoration(
-                color: Colors.blue,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Center(
-                child: Text(
-                  'Karta 1',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(height: 16), // Medzera medzi kartami
-            Container(
-              width: MediaQuery.of(context).size.width * 0.4,
-              height: MediaQuery.of(context).size.height * 0.2,
-              decoration: BoxDecoration(
-                color: Colors.red,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Center(
-                child: Text(
-                  'Karta 2',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
 
 class SidesCardItem {
   final String urlImage;
@@ -396,13 +298,22 @@ class AboutPersonaPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: ProfilePage(),
+    );
+  }
+}
+
+class ProfilePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
       body: Container(
         child: Stack(
           children: [
             Column(
               children: [
                 Expanded(
-                  flex: 1,
+                  flex: 3,
                   child: Container(
                     width: double.infinity,
                     height: double.infinity,
@@ -431,7 +342,7 @@ class AboutPersonaPage extends StatelessWidget {
                                   onPressed: () => Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => FirstIdeas(),
+                                      builder: (context) => AboutUsPage(),
                                     ),
                                   ),
                                   icon: ImageIcon(AssetImage("icons/go-back.png")),
@@ -445,7 +356,7 @@ class AboutPersonaPage extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                  flex: 1,
+                  flex: 7,
 
                   child: Padding(
                     padding: EdgeInsets.all(12),
@@ -454,11 +365,22 @@ class AboutPersonaPage extends StatelessWidget {
                         children: [
                           SizedBox(height: 50,),
                           Container(
-                            child: Text(
-                              "Valábik je odchovancom Nitry. V roku 2004 bol draftovaný klubom Atlanta Thrashers. Nasledujúce tri sezóny hrával za tím Kitchener Rangers (OHL). Sezónu 2006/07 odohral za farmársky klub Atlanty, Chicago Wolves. V NHL debutoval v sezóne 2007/08. Za Atlantu v NHL odohral 80 stretnutí, v ktorých mal sedem asistencií a 210 trestných minút. Taktiež je bývalým hráčom klubu Wilkes Barre Scranton Penguins v AHL. V sezóne 2011/2012 na farme Pittsburghu odohral kvôli zraneniu kolena a ruky len 3 zápasy. Pred ročníkom 2012/2013 sa rozhodol pre návrat do Európy a s českým klubom HC Kometa Brno sa dohodol na ročnej zmluve.[1] Po 29 zápasoch odohraných v Českej extralige sa vrátil späť za oceán, kde sa dohodol na spolupráci s tímom Portland Pirates (AHL). [2] V sezóne 2013/2014 obliekal dres slovenského extraligového klubu ŠHK 37 Piešťany, v 18 zápasoch zaznamenal 5 bodov (1+4).[3][4] Pred sezónou 2014/2015 bol na skúške v kazašskom klube Saryarka Karaganda, kde napokon neuspel. Následne sa dohodol na zmluve s tímom kazašskej najvyššej súťaže Arystan Temirtau",
-                              style: TextStyle(color: Colors.black),
-                            ),
-                            color: Colors.grey,
+                              color: Colors.transparent,//Color(0xffDDDDDD),
+                              child: Column(
+                              children: <Widget>[
+                                AboutMeText(),
+                                Divider(),
+                                AboutMeText(),
+                                Divider(),
+                                AboutMeText(),
+                                Divider(),
+                                AboutMeText(),
+                                Divider(),
+                                AboutMeText(),
+                                Divider(),
+                                AboutMeText(),
+                              ],
+                            )
                           ),
                         ],
                       ),
@@ -469,7 +391,7 @@ class AboutPersonaPage extends StatelessWidget {
             ),
             Positioned(
               left: (MediaQuery.of(context).size.width - 180) / 2,
-              top: (MediaQuery.of(context).size.height - 80) / 2,
+              top: (((MediaQuery.of(context).size.height)/10)*3)-40,
               child: Container(
                 width: 180,
                 height: 80,
@@ -479,9 +401,12 @@ class AboutPersonaPage extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    "Boris valabejk",
+                    "Borisko",
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.black),
+                    style: TextStyle(
+                        color: Colors.black,
+                      fontSize: 24
+                    ),
                   ),
                 ),
               ),
@@ -493,6 +418,58 @@ class AboutPersonaPage extends StatelessWidget {
   }
 }
 
+class AboutMeText extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 8),
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 8),
+              child: Row(
+              children: [
+                Container(
+                  width: 40,
+                  height: 40,
+                  child: ImageIcon(
+                    AssetImage("icons/youtube.png"),
+                    color: Colors.blue,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8),
+                  child: Text("O mne",
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        fontSize: 20
+                    ),
+                  ),
+                ),
+              ],
+              ),
+            ),
+
+            Text("som najlepsi na svete parada amerika hole baby ujupi jou",
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 18
+              ),
+            ),
+
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
 
 class AboutUsPage extends StatelessWidget {
   @override
@@ -503,7 +480,7 @@ class AboutUsPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-              flex: 1,
+              flex: 3,
               child: Container(
                 width: double.infinity,
                 height: double.infinity,
@@ -537,7 +514,7 @@ class AboutUsPage extends StatelessWidget {
                 ),
               )),
           Expanded(
-              flex: 2,
+              flex: 7,
               child: Container(
                 decoration: BoxDecoration(
                     color: Color(0xffDDDDDD),
@@ -844,218 +821,3 @@ Widget ButtonSidesCard({required SidesCardItem item}) => Padding(
           )),
     );
 
-/*class ButtonSidesCard extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(20),
-      child: Container(
-          width: 130,
-          height: 200,
-          color: Colors.green,
-          child: Padding(
-            padding: EdgeInsets.all(8),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-
-              children: [
-                Expanded(
-                  flex: 2,
-                  child: Container(
-                    //padding: EdgeInsets.only(top: 15,right: 15,left: 15),
-                    child: Image.asset('icons/search.png'),
-                  ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Container(
-                    alignment: Alignment.center,
-                     padding: EdgeInsets.only(left: 15, right: 15),
-                      child: Column(
-                        children: [
-                          Text("O nás",
-                        style: TextStyle(
-                          fontSize: 18,
-                        ),
-                        textAlign: TextAlign.center,
-                        ),
-                          Text("Kto sme?",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 12)
-                            ,)
-
-                        ]
-                      )
-                  ),
-                )
-              ],
-            ),
-          )),
-    );
-  }
-}*/
-
-class ButtonCard extends StatelessWidget {
-  const ButtonCard({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
-}
-
-class ExpandedWidgetsTest extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        body: Container(
-            child: Row(
-      children: <Widget>[
-        Expanded(flex: 2, child: Image.asset('AlexPlatz.jpg')),
-        Expanded(
-          flex: 2,
-          child: Container(
-            padding: EdgeInsets.all(20),
-            color: Colors.cyan,
-            child: Text("k1"),
-          ),
-        ),
-        Expanded(
-          flex: 2,
-          child: Container(
-            padding: EdgeInsets.all(20),
-            color: Colors.lightBlueAccent,
-            child: Text("d2"),
-          ),
-        ),
-        Expanded(
-          flex: 2,
-          child: Container(
-            padding: EdgeInsets.all(20),
-            color: Colors.amber,
-            child: Text("3"),
-          ),
-        )
-      ],
-    )));
-  }
-}
-
-class ColumntTest extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Container(
-            padding: EdgeInsets.all(20),
-            color: Colors.yellow,
-            child: Text("one"),
-          ),
-          Container(
-            padding: EdgeInsets.all(30),
-            color: Colors.cyan,
-            child: Text("two"),
-          ),
-          Container(
-            padding: EdgeInsets.all(40),
-            color: Colors.green,
-            child: Text("three"),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class TestPaddAndMarg extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.blue[100],
-      body: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Text("Hello columnPadding"),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class TestMyOwn extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          children: [
-            Text(
-              "Hello my own txt",
-              style: TextStyle(
-                letterSpacing: 5,
-                fontSize: 35,
-                color: Colors.green,
-              ),
-            ),
-            IconButton(
-              onPressed: () {
-                print("Hello IconButton");
-              },
-              icon: Icon(Icons.ac_unit_sharp),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class TestCard extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.red[600],
-      body: Column(
-        children: <Widget>[
-          Image.asset(
-            'AlexPlatz.JPG',
-            width: 50,
-            height: 26,
-          ),
-          Icon(
-            Icons.accessible_forward_sharp,
-            color: Colors.orange,
-            size: 100,
-          ),
-          IconButton(
-            onPressed: () {
-              print("Hello butt");
-            },
-            icon: Icon(Icons.accessible),
-          )
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          print("Hello click");
-        },
-        child: Column(children: <Widget>[
-          Text('Click me gigi',
-              style: TextStyle(
-                  fontFamily: 'Roboto-LightItalic',
-                  fontSize: 12,
-                  color: Colors.black)),
-          Text("data"),
-        ]),
-        backgroundColor: Colors.limeAccent,
-      ),
-    );
-  }
-}
