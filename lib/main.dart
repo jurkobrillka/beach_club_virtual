@@ -1,15 +1,26 @@
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
-void main() {
+import 'package:beach_club_virtual/ui/home/home_view.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+
+import 'config/theme.dart';
+import 'firebase_options.dart';
+import 'dependency_container.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  await initDependencies();
   runApp(MaterialApp(
+    theme: lightTheme,
       home: Center(
-    child: FirstIdeas(),
+    child: HomeView(),
   ))); //running the app and we are passing ROOT WIDGET
 }
 
-
+/*
 class SidesCardItem {
   final String urlImage;
   final String title;
@@ -28,9 +39,9 @@ class _FirstIdeasTest extends State<FirstIdeas> {
   ScrollController _scrollController = ScrollController();
 
   List<SidesCardItem> sidesCardItems = [
-    SidesCardItem(
+    const SidesCardItem(
         urlImage: 'icons/search.png', title: 'O nás', subtitle: 'Kto sme?'),
-    SidesCardItem(
+    const SidesCardItem(
         urlImage: 'icons/online-support.png',
         title: "Kontakt",
         subtitle: "Napíš nám ;)")
@@ -43,7 +54,7 @@ class _FirstIdeasTest extends State<FirstIdeas> {
       final double centerPosition =
           _scrollController.position.maxScrollExtent / 2;
       _scrollController.animateTo(centerPosition,
-          duration: Duration(milliseconds: 1000), curve: Curves.ease);
+          duration: const Duration(milliseconds: 1000), curve: Curves.ease);
     });
   }
 
@@ -51,7 +62,7 @@ class _FirstIdeasTest extends State<FirstIdeas> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.bottomCenter,
             end: Alignment.topCenter,
@@ -68,8 +79,8 @@ class _FirstIdeasTest extends State<FirstIdeas> {
             Expanded(
               flex: 1,
               child: Padding(
-                padding: const EdgeInsets.only(
-                    left: 24, bottom: 10, right: 24, top: 10),
+                padding:
+                    EdgeInsets.only(left: 24, bottom: 10, right: 24, top: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
@@ -77,20 +88,14 @@ class _FirstIdeasTest extends State<FirstIdeas> {
                       flex: 3,
                       child: Text(
                         "Virtuálny",
-                        style: TextStyle(
-                          fontSize: 48,
-                          color: Colors.black,
-                        ),
+                        style: Theme.of(context).textTheme.displayMedium,
                       ),
                     ),
                     Expanded(
                       flex: 1,
                       child: Text(
                         "BeachClub Prešov",
-                        style: TextStyle(
-                          fontSize: 15,
-                          color: Colors.grey,
-                        ),
+                        style: Theme.of(context).textTheme.labelMedium //TODO TU JE TO IMPORTANT POZOR!!!
                       ),
                     )
                   ],
@@ -110,24 +115,24 @@ class _FirstIdeasTest extends State<FirstIdeas> {
                       //dragStartBehavior: DragStartBehavior.start,
                       controller: _scrollController,
                       child: Row(children: [
-                        SizedBox(
+                        const SizedBox(
                           width: 12,
                         ),
                         InkWell(
                             onTap: () => Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => AboutUsPage())),
+                                    builder: (context) => AboutUsView())),
                             child: ButtonSidesCard(item: sidesCardItems[0])),
-                        SizedBox(
+                        const SizedBox(
                           width: 12,
                         ),
                         ButtonNewsCard(),
-                        SizedBox(
+                        const SizedBox(
                           width: 12,
                         ),
                         ButtonNewsCard(),
-                        SizedBox(
+                        const SizedBox(
                           width: 12,
                         ),
                         InkWell(
@@ -136,7 +141,7 @@ class _FirstIdeasTest extends State<FirstIdeas> {
                                 MaterialPageRoute(
                                     builder: (context) => ContactPage())),
                             child: ButtonSidesCard(item: sidesCardItems[1])),
-                        SizedBox(
+                        const SizedBox(
                           width: 12,
                         ),
                       ])),
@@ -158,7 +163,9 @@ class _FirstIdeasTest extends State<FirstIdeas> {
     );
   }
 }
+*/
 
+/*
 class ContactPage extends StatelessWidget {
   void showEasterEggToast(String title) {
     Fluttertoast.showToast(
@@ -174,12 +181,13 @@ class ContactPage extends StatelessWidget {
         backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () => Navigator.push(
-              context, MaterialPageRoute(builder: (context) => FirstIdeas())),
-          icon: ImageIcon(AssetImage('icons/go-back.png'), color: Colors.black),
+              context, MaterialPageRoute(builder: (context) => HomeView())),
+          icon: const ImageIcon(AssetImage('icons/go-back.png'),
+              color: Colors.black),
         ),
         title: Container(
           alignment: Alignment.center,
-          child: Text(
+          child: const Text(
             "Kontakt",
             style: TextStyle(
                 color: Colors.black, fontFamily: "fonts/Roboto-LightItalic"),
@@ -190,7 +198,7 @@ class ContactPage extends StatelessWidget {
               onPressed: () {
                 showEasterEggToast("MSR U22 2023 Úžasný Alex Timko 3. miesto.");
               },
-              icon: ImageIcon(
+              icon: const ImageIcon(
                 AssetImage("icons/information.png"),
                 color: Colors.black,
               ))
@@ -198,25 +206,25 @@ class ContactPage extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Container(
-            padding: EdgeInsets.all(12),
+            padding: const EdgeInsets.all(12),
             child: Column(children: [
               SizedBox(
                 width: 120,
                 height: 120,
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(100),
-                    child: Image(
+                    child: const Image(
                       image: AssetImage("img.png"),
                     )),
               ),
               const SizedBox(
                 height: 10,
               ),
-              Text(
+              const Text(
                 "Beachclub Prešov",
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
-              Text("beachclubpresov@gmail.com"),
+              const Text("beachclubpresov@gmail.com"),
               const SizedBox(height: 20),
               SizedBox(
                 width: 200,
@@ -224,11 +232,11 @@ class ContactPage extends StatelessWidget {
                   onPressed: () {
                     print("NAPIS NAM MAILA");
                   },
-                  child: Text("Napíš nám"),
+                  child: const Text("Napíš nám"),
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
                       side: BorderSide.none,
-                      shape: StadiumBorder()),
+                      shape: const StadiumBorder()),
                 ),
               ),
               const SizedBox(
@@ -239,7 +247,7 @@ class ContactPage extends StatelessWidget {
               //MENU
               ContactMenuWidget(
                   title: "Beachclub Prešov",
-                  icon: ImageIcon(
+                  icon: const ImageIcon(
                     AssetImage("icons/facebook.png"),
                     color: Colors.blue,
                   ),
@@ -249,7 +257,7 @@ class ContactPage extends StatelessWidget {
                   endIcon: true),
               ContactMenuWidget(
                   title: "@beachclubpresov",
-                  icon: ImageIcon(
+                  icon: const ImageIcon(
                     AssetImage("icons/instagram.png"),
                     color: Colors.blue,
                   ),
@@ -259,7 +267,7 @@ class ContactPage extends StatelessWidget {
                   endIcon: true),
               ContactMenuWidget(
                   title: "BEACHCLUB PREŠOV",
-                  icon: ImageIcon(
+                  icon: const ImageIcon(
                     AssetImage("icons/youtube.png"),
                     color: Colors.blue,
                   ),
@@ -270,7 +278,7 @@ class ContactPage extends StatelessWidget {
               const Divider(),
               ContactMenuWidget(
                   title: "+421 907 489 180",
-                  icon: ImageIcon(
+                  icon: const ImageIcon(
                     AssetImage("icons/24-hours-service.png"),
                     color: Colors.blue,
                   ),
@@ -280,7 +288,7 @@ class ContactPage extends StatelessWidget {
                   endIcon: false),
               ContactMenuWidget(
                   title: "SDH 3, Prešov",
-                  icon: ImageIcon(
+                  icon: const ImageIcon(
                     AssetImage("icons/location.png"),
                     color: Colors.blue,
                   ),
@@ -293,7 +301,9 @@ class ContactPage extends StatelessWidget {
     );
   }
 }
+*/
 
+/*
 class AboutPersonaPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -302,7 +312,9 @@ class AboutPersonaPage extends StatelessWidget {
     );
   }
 }
+*/
 
+/*
 class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -317,14 +329,14 @@ class ProfilePage extends StatelessWidget {
                   child: Container(
                     width: double.infinity,
                     height: double.infinity,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage("boris_valabik.jpg"),
                         fit: BoxFit.cover,
                       ),
                     ),
                     child: Padding(
-                      padding: EdgeInsets.all(12),
+                      padding: const EdgeInsets.all(12),
                       child: Column(
                         children: [
                           Align(
@@ -345,7 +357,8 @@ class ProfilePage extends StatelessWidget {
                                       builder: (context) => AboutUsPage(),
                                     ),
                                   ),
-                                  icon: ImageIcon(AssetImage("icons/go-back.png")),
+                                  icon: const ImageIcon(
+                                      AssetImage("icons/go-back.png")),
                                 ),
                               ),
                             ),
@@ -357,31 +370,31 @@ class ProfilePage extends StatelessWidget {
                 ),
                 Expanded(
                   flex: 7,
-
                   child: Padding(
-                    padding: EdgeInsets.all(12),
+                    padding: const EdgeInsets.all(12),
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                          SizedBox(height: 50,),
-                          Container(
-                              color: Colors.transparent,//Color(0xffDDDDDD),
-                              child: Column(
-                              children: <Widget>[
-                                AboutMeText(),
-                                Divider(),
-                                AboutMeText(),
-                                Divider(),
-                                AboutMeText(),
-                                Divider(),
-                                AboutMeText(),
-                                Divider(),
-                                AboutMeText(),
-                                Divider(),
-                                AboutMeText(),
-                              ],
-                            )
+                          const SizedBox(
+                            height: 50,
                           ),
+                          Container(
+                              color: Colors.transparent, //Color(0xffDDDDDD),
+                              child: Column(
+                                children: <Widget>[
+                                  AboutMeText(),
+                                  const Divider(),
+                                  AboutMeText(),
+                                  const Divider(),
+                                  AboutMeText(),
+                                  const Divider(),
+                                  AboutMeText(),
+                                  const Divider(),
+                                  AboutMeText(),
+                                  const Divider(),
+                                  AboutMeText(),
+                                ],
+                              )),
                         ],
                       ),
                     ),
@@ -391,7 +404,7 @@ class ProfilePage extends StatelessWidget {
             ),
             Positioned(
               left: (MediaQuery.of(context).size.width - 180) / 2,
-              top: (((MediaQuery.of(context).size.height)/10)*3)-40,
+              top: (((MediaQuery.of(context).size.height) / 10) * 3) - 40,
               child: Container(
                 width: 180,
                 height: 80,
@@ -399,14 +412,11 @@ class ProfilePage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(30),
                   color: Colors.white,
                 ),
-                child: Center(
+                child: const Center(
                   child: Text(
                     "Borisko",
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: Colors.black,
-                      fontSize: 24
-                    ),
+                    style: TextStyle(color: Colors.black, fontSize: 24),
                   ),
                 ),
               ),
@@ -417,60 +427,57 @@ class ProfilePage extends StatelessWidget {
     );
   }
 }
+*/
 
+/*
 class AboutMeText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 8),
+        padding: const EdgeInsets.symmetric(vertical: 8),
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 8),
+              padding: const EdgeInsets.symmetric(vertical: 8),
               child: Row(
-              children: [
-                Container(
-                  width: 40,
-                  height: 40,
-                  child: ImageIcon(
-                    AssetImage("icons/youtube.png"),
-                    color: Colors.blue,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8),
-                  child: Text("O mne",
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                        fontSize: 20
+                children: [
+                  Container(
+                    width: 40,
+                    height: 40,
+                    child: const ImageIcon(
+                      AssetImage("icons/youtube.png"),
+                      color: Colors.blue,
                     ),
                   ),
-                ),
-              ],
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8),
+                    child: Text(
+                      "O mne",
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                          fontSize: 20),
+                    ),
+                  ),
+                ],
               ),
             ),
-
-            Text("som najlepsi na svete parada amerika hole baby ujupi jou",
+            const Text(
+              "som najlepsi na svete parada amerika hole baby ujupi jou",
               textAlign: TextAlign.left,
-              style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 18
-              ),
+              style: TextStyle(color: Colors.grey, fontSize: 18),
             ),
-
           ],
         ),
       ),
     );
   }
 }
+*/
 
-
-
+/*
 class AboutUsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -484,12 +491,12 @@ class AboutUsPage extends StatelessWidget {
               child: Container(
                 width: double.infinity,
                 height: double.infinity,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage("team.JPG"), fit: BoxFit.cover),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.all(12),
+                  padding: const EdgeInsets.all(12),
                   child: Column(children: [
                     Align(
                       alignment: Alignment.topLeft,
@@ -506,7 +513,8 @@ class AboutUsPage extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => FirstIdeas())),
-                              icon: ImageIcon(AssetImage("icons/go-back.png"))),
+                              icon: const ImageIcon(
+                                  AssetImage("icons/go-back.png"))),
                         ),
                       ),
                     )
@@ -516,36 +524,36 @@ class AboutUsPage extends StatelessWidget {
           Expanded(
               flex: 7,
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     color: Color(0xffDDDDDD),
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(30),
                         topRight: Radius.circular(30))),
                 child: Padding(
-                  padding: EdgeInsets.only(left: 12, right: 12),
+                  padding: const EdgeInsets.only(left: 12, right: 12),
                   child: ListView(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 12,
                       ),
                       CustomWidget(),
-                      SizedBox(
+                      const SizedBox(
                         height: 12,
                       ),
                       CustomWidget(),
-                      SizedBox(
+                      const SizedBox(
                         height: 12,
                       ),
                       CustomWidget(),
-                      SizedBox(
+                      const SizedBox(
                         height: 12,
                       ),
                       CustomWidget(),
-                      SizedBox(
+                      const SizedBox(
                         height: 12,
                       ),
                       CustomWidget(),
-                      SizedBox(
+                      const SizedBox(
                         height: 12,
                       ),
                       CustomWidget(),
@@ -558,12 +566,14 @@ class AboutUsPage extends StatelessWidget {
     );
   }
 }
+*/
 
+/*
 class CustomWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
       child: Container(
         color: Colors.transparent,
         width: double.infinity,
@@ -580,7 +590,7 @@ class CustomWidget extends StatelessWidget {
                       MaterialPageRoute(
                           builder: (context) => AboutPersonaPage())),
                   child: Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(20)),
                         //color: Colors.blue,
                         image: DecorationImage(
@@ -604,7 +614,7 @@ class CustomWidget extends StatelessWidget {
                       MaterialPageRoute(
                           builder: (context) => AboutPersonaPage())),
                   child: Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       borderRadius: BorderRadius.only(
                           topRight: Radius.circular(20),
                           bottomRight: Radius.circular(20)),
@@ -621,7 +631,7 @@ class CustomWidget extends StatelessWidget {
                     width: double.infinity,
                     height: 100,
                     child: Padding(
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -634,8 +644,8 @@ class CustomWidget extends StatelessWidget {
                               color: Colors.blue[900],
                             ),
                           ),
-                          SizedBox(height: 5),
-                          Text(
+                          const SizedBox(height: 5),
+                          const Text(
                             "Sexsymbol",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
@@ -643,7 +653,7 @@ class CustomWidget extends StatelessWidget {
                               color: Colors.grey,
                             ),
                           ),
-                          Text(
+                          const Text(
                             "32 rokov",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
@@ -664,7 +674,9 @@ class CustomWidget extends StatelessWidget {
     );
   }
 }
+*/
 
+/*
 class ContactMenuWidget extends StatelessWidget {
   const ContactMenuWidget({
     Key? key,
@@ -699,7 +711,7 @@ class ContactMenuWidget extends StatelessWidget {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100),
                     color: Colors.blueGrey.withOpacity(0.1)),
-                child: Icon(
+                child: const Icon(
                   Icons.arrow_right,
                   color: Colors.grey,
                 ),
@@ -708,18 +720,20 @@ class ContactMenuWidget extends StatelessWidget {
   }
 }
 
-class ButtonNewsCard extends StatelessWidget {
+*/
+/*
+cla*ss ButtonNewsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 10, bottom: 10),
+      padding: const EdgeInsets.only(top: 10, bottom: 10),
       child: Container(
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
+              borderRadius: const BorderRadius.all(Radius.circular(10)),
               color: Colors.white,
               border: Border.all(color: Colors.black, width: 1),
               boxShadow: [
-                BoxShadow(
+                const BoxShadow(
                     color: Colors.black,
                     blurRadius: 4,
                     spreadRadius: 0.0,
@@ -728,8 +742,8 @@ class ButtonNewsCard extends StatelessWidget {
           width: 150,
           height: 200,
           //color: Colors.green,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+          child: const Padding(
+            padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -766,24 +780,24 @@ class ButtonNewsCard extends StatelessWidget {
 }
 
 Widget ButtonSidesCard({required SidesCardItem item}) => Padding(
-      padding: EdgeInsets.only(top: 10, bottom: 10),
+      padding: const EdgeInsets.only(top: 10, bottom: 10),
       child: Container(
           width: 130,
           height: 200,
           //color: Colors.green,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
+              borderRadius: const BorderRadius.all(Radius.circular(10)),
               color: Colors.white,
               border: Border.all(color: Colors.black, width: 1),
               boxShadow: [
-                BoxShadow(
+                const BoxShadow(
                     color: Colors.black,
                     blurRadius: 4,
                     spreadRadius: 0.0,
                     offset: Offset(6.0, 4.0))
               ]),
           child: Padding(
-            padding: EdgeInsets.all(8),
+            padding: const EdgeInsets.all(8),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -799,20 +813,19 @@ Widget ButtonSidesCard({required SidesCardItem item}) => Padding(
                 Expanded(
                   flex: 1,
                   child: Container(
-//testik vymaz
                       alignment: Alignment.center,
-                      padding: EdgeInsets.only(left: 15, right: 15),
+                      padding: const EdgeInsets.only(left: 15, right: 15),
                       child: Column(children: [
                         Text(
                           item.title,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold),
                           textAlign: TextAlign.center,
                         ),
                         Text(
                           item.subtitle,
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 12),
+                          style: const TextStyle(fontSize: 12),
                         )
                       ])),
                 )
@@ -820,4 +833,4 @@ Widget ButtonSidesCard({required SidesCardItem item}) => Padding(
             ),
           )),
     );
-
+*/
