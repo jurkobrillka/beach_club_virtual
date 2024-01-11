@@ -4,6 +4,8 @@ import 'package:beach_club_virtual/ui/home/widgets/button_sides_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../config/colors.dart';
+import '../../config/theme.dart';
 import '../../core/entity/sides_card_item.dart';
 import '../about_us/abou_us_view.dart';
 import '../contact/contact_view.dart';
@@ -25,7 +27,7 @@ class _HomeView extends State<HomeView> {
     const SidesCardItem(
         urlImage: 'icons/online-support.png',
         title: "Kontakt",
-        subtitle: "Napíš nám ;)")
+        subtitle: "Napíš nám")
   ];
 
   @override
@@ -52,43 +54,38 @@ class _HomeView extends State<HomeView> {
             begin: Alignment.bottomCenter,
             end: Alignment.topCenter,
             colors: [
-              Colors.lightBlue, // Light blue color for the bottom 75%
-              Colors.white, // White color from bottom 75% to top
+              AppColors.primaryContainer, // Light blue color for the bottom 75%
+              AppColors.backgroundWhite, // White color from bottom 75% to top
             ],
-            stops: [0.60, 0.60], // Stops at 75% from bottom
+            stops: [0.70, 0.70], // Stops at 75% from bottom
           ),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Expanded(
-              flex: 1,
+              flex: 3,
               child: Padding(
                 padding:
                 EdgeInsets.only(left: 24, bottom: 10, right: 24, top: 10),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Expanded(
-                      flex: 3,
-                      child: Text(
-                        "Virtuálny",
-                        style: Theme.of(context).textTheme.displayMedium,
-                      ),
+                    Text(
+                      "Virtuálny",
+                      style: Theme.of(context).textTheme.titleLarge,
                     ),
-                    Expanded(
-                      flex: 1,
-                      child: Text(
-                          "BeachClub Prešov",
-                          style: Theme.of(context).textTheme.labelMedium //TODO TU JE TO IMPORTANT POZOR!!!
-                      ),
+                    Text(
+                        "BeachClub Prešov",
+                        style: Theme.of(context).textTheme.titleMedium //TODO TU JE TO IMPORTANT POZOR!!!
                     )
                   ],
                 ),
               ),
             ),
             Expanded(
-              flex: 2,
+              flex: 6,
               child: Padding(
                 padding: const EdgeInsets.only(top: 12, bottom: 12),
                 child: Container(
@@ -122,7 +119,8 @@ class _HomeView extends State<HomeView> {
                                 children: [
                                   ButtonNewsCard(state.news[0]),
                                   const SizedBox(width: 10),
-                                  ButtonNewsCard(state.news[1])
+                                  ButtonNewsCard(state.news[1]),
+                                  const SizedBox(width: 10),
                                 ],
                               );
                             }
@@ -143,7 +141,7 @@ class _HomeView extends State<HomeView> {
               ),
             ),
             Expanded(
-              flex: 2,
+              flex: 11,
               child: Padding(
                 padding: const EdgeInsets.all(24.0),
                 child: Container(

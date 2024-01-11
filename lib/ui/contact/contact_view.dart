@@ -1,3 +1,4 @@
+import 'package:beach_club_virtual/config/colors.dart';
 import 'package:beach_club_virtual/core/entity/contact_info_item.dart';
 import 'package:beach_club_virtual/ui/contact/widgets/contact_detail.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,7 +19,7 @@ class ContactPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.backgroundWhite,
         leading: IconButton(
           onPressed: () => Navigator.push(
               context, MaterialPageRoute(builder: (context) => HomeView())),
@@ -27,11 +28,7 @@ class ContactPage extends StatelessWidget {
         ),
         title: Container(
           alignment: Alignment.center,
-          child: const Text(
-            "Kontakt",
-            style: TextStyle(
-                color: Colors.black, fontFamily: "fonts/Roboto-LightItalic"),
-          ),
+
         ),
         actions: [
           IconButton(
@@ -62,7 +59,9 @@ class ContactPage extends StatelessWidget {
               ),
               const Text(
                 "Beachclub Prešov",
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    fontFamily: "Roboto", fontSize: 25, fontWeight: FontWeight.bold, color: AppColors.primaryTitle),
+
               ),
               const Text("beachclubpresov@gmail.com"),
               const SizedBox(height: 20),
@@ -72,9 +71,14 @@ class ContactPage extends StatelessWidget {
                   onPressed: () {
                     print("NAPIS NAM MAILA");
                   },
-                  child: const Text("Napíš nám"),
+                  child: const Text(
+                    "Napíš nám",
+                    style: TextStyle(
+                      color: AppColors.surface
+                    ),
+                  ),
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
+                      backgroundColor: AppColors.primaryContainer,
                       side: BorderSide.none,
                       shape: const StadiumBorder()),
                 ),
@@ -82,14 +86,16 @@ class ContactPage extends StatelessWidget {
               const SizedBox(
                 height: 30,
               ),
-              const Divider(),
+              const Divider(
+                color: AppColors.primaryContainer,
+              ),
 
               //MENU
               ContactDetail(ContactInfoItem(
                   title: "Beachclub Prešov",
                   icon: const ImageIcon(
                     AssetImage("icons/facebook.png"),
-                    color: Colors.blue,
+                    color: AppColors.primaryContainer,
                   ),
                   onPress: () {
                     print("facebook link");
@@ -99,7 +105,7 @@ class ContactPage extends StatelessWidget {
                   title: "@beachclubpresov",
                   icon: const ImageIcon(
                     AssetImage("icons/instagram.png"),
-                    color: Colors.blue,
+                    color: AppColors.primaryContainer,
                   ),
                   onPress: () {
                     print("instagram link");
@@ -108,18 +114,20 @@ class ContactPage extends StatelessWidget {
               ContactDetail(ContactInfoItem(title: "BEACHCLUB PREŠOV",
                   icon: const ImageIcon(
                     AssetImage("icons/youtube.png"),
-                    color: Colors.blue,
+                    color: AppColors.primaryContainer,
                   ),
                   onPress: () {
                     print("youtube linkk");
                   },
                   endIcon: true)),
-              const Divider(),
+              const Divider(
+                color: AppColors.primaryContainer,
+              ),
               ContactDetail(ContactInfoItem(
                   title: "+421 907 489 180",
                   icon: const ImageIcon(
                     AssetImage("icons/24-hours-service.png"),
-                    color: Colors.blue,
+                    color: AppColors.primaryContainer,
                   ),
                   onPress: () {
                     print("youtube linkk");
@@ -129,7 +137,7 @@ class ContactPage extends StatelessWidget {
                   title: "SDH 3, Prešov",
                   icon: const ImageIcon(
                     AssetImage("icons/location.png"),
-                    color: Colors.blue,
+                    color: AppColors.primaryContainer,
                   ),
                   onPress: () {
                     print("youtube linkk");

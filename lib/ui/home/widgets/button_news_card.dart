@@ -1,3 +1,4 @@
+import 'package:beach_club_virtual/config/colors.dart';
 import 'package:beach_club_virtual/core/entity/news.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,20 +14,12 @@ class ButtonNewsCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 10, bottom: 10),
       child: Container(
-          decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(Radius.circular(10)),
-              color: Colors.white,
-              border: Border.all(color: Colors.black, width: 1),
-              boxShadow: [
-                const BoxShadow(
-                    color: Colors.black,
-                    blurRadius: 4,
-                    spreadRadius: 0.0,
-                    offset: Offset(6.0, 4.0))
-              ]),
-          width: 150,
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          color: AppColors.surface,
+        ),
+          width: 130,
           height: 200,
-          //color: Colors.green,
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
             child: Column(
@@ -41,12 +34,7 @@ class ButtonNewsCard extends StatelessWidget {
                       children: [
                         Text(
                           news.title,
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          news.dateTime.toString(),
-                          style: TextStyle(fontSize: 12),
+                          style: Theme.of(context).textTheme.bodyLarge,
                         ),
                       ]),
                 ),
@@ -54,10 +42,8 @@ class ButtonNewsCard extends StatelessWidget {
                     flex: 1,
                     child: Text(
                       news.subTitle,
-                      overflow: TextOverflow.ellipsis, //... a text dlhy
-                      style:
-                      TextStyle(fontSize: 12, fontWeight: FontWeight.w300),
-                    ))
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),)
               ],
             ),
           )),

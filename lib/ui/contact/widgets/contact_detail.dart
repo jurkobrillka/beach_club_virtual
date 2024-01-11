@@ -2,6 +2,8 @@ import 'package:beach_club_virtual/core/entity/contact_info_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../../config/colors.dart';
+
 class ContactDetail extends StatefulWidget {
   final ContactInfoItem item;
 
@@ -26,7 +28,10 @@ class _ContactDetailState extends State<ContactDetail>{
           ),
           child: widget.item.icon,
         ),
-        title: Text(widget.item.title),
+        title: Text(widget.item.title,
+          style: TextStyle(
+              color: Colors.black
+          ),),
         trailing: widget.item.endIcon
             ? Container(
           width: 30,

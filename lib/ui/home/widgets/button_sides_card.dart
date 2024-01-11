@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../config/colors.dart';
 import '../../../core/entity/sides_card_item.dart';
 
 class ButtonSidesCard extends StatelessWidget {
@@ -14,19 +15,9 @@ class ButtonSidesCard extends StatelessWidget {
       child: Container(
         width: 130,
         height: 200,
-        //color: Colors.green,
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(10)),
-          color: Colors.white,
-          border: Border.all(color: Colors.black, width: 1),
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black,
-              blurRadius: 4,
-              spreadRadius: 0.0,
-              offset: Offset(6.0, 4.0),
-            )
-          ],
+          color: AppColors.surface,
         ),
         child: Padding(
           padding: const EdgeInsets.all(8),
@@ -51,16 +42,13 @@ class ButtonSidesCard extends StatelessWidget {
                     children: [
                       Text(
                         item.title,
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: Theme.of(context).textTheme.bodyLarge,
                         textAlign: TextAlign.center,
                       ),
                       Text(
                         item.subtitle,
                         textAlign: TextAlign.center,
-                        style: const TextStyle(fontSize: 12),
+                        style: Theme.of(context).textTheme.bodyMedium,
                       ),
                     ],
                   ),
