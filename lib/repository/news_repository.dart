@@ -14,6 +14,7 @@ final class NewsRepository {
 
   Future<List<News>?> getHomeNews() async {
     if (_cachedHomeNews != null) {
+      print("returning cachedList");
       return _cachedHomeNews;
     }
     final reference = firestore.collection("news").withConverter<News>(

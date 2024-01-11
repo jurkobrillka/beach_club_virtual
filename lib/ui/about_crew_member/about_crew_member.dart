@@ -1,116 +1,111 @@
+import 'package:beach_club_virtual/core/entity/crew_member.dart';
 import 'package:beach_club_virtual/ui/about_crew_member/widgets/TextDetail.dart';
 import 'package:beach_club_virtual/ui/about_us/abou_us_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AboutCrewMember extends StatelessWidget {
+
+
+  final CrewMember crewMember;
+
+  const AboutCrewMember(this.crewMember);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Stack(
-          children: [
-            Column(
-              children: [
-                Expanded(
-                  flex: 3,
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            leading: IconButton(onPressed: Navigator.of(context).pop,
+                icon: Icon(Icons.arrow_back_ios)),
+            expandedHeight: 200,
+            bottom: PreferredSize(
+                child: Center(
                   child: Container(
-                    width: double.infinity,
-                    height: double.infinity,
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("boris_valabik.jpg"),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+
                     child: Padding(
-                      padding: const EdgeInsets.all(12),
-                      child: Column(
-                        children: [
-                          Align(
-                            alignment: Alignment.topLeft,
-                            child: Material(
-                              color: Colors.transparent,
-                              child: Container(
-                                width: 40,
-                                height: 40,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(100),
-                                  color: Colors.grey.withOpacity(0.2),
-                                ),
-                                child: IconButton(
-                                  onPressed: () => Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => AboutUsView(),
-                                    ),
-                                  ),
-                                  icon: const ImageIcon(
-                                      AssetImage("icons/go-back.png")),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
+                      padding: const EdgeInsets.symmetric(horizontal: 25),
+                      child: Text(crewMember.nickname,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 37,
+                          color: Colors.blue[900],
+                        ),
                       ),
+                    ),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            topRight: Radius.circular(20)
+                        )
                     ),
                   ),
                 ),
-                Expanded(
-                  flex: 7,
-                  child: Padding(
-                    padding: const EdgeInsets.all(12),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          const SizedBox(
-                            height: 50,
-                          ),
-                          Container(
-                              color: Colors.transparent, //Color(0xffDDDDDD),
-                              child: Column(
-                                children: <Widget>[
-                                  TextDetail(),
-                                  const Divider(),
-                                  TextDetail(),
-                                  const Divider(),
-                                  TextDetail(),
-                                  const Divider(),
-                                  TextDetail(),
-                                  const Divider(),
-                                  TextDetail(),
-                                  const Divider(),
-                                  TextDetail(),
-                                ],
-                              )),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Positioned(
-              left: (MediaQuery.of(context).size.width - 180) / 2,
-              top: (((MediaQuery.of(context).size.height) / 10) * 3) - 40,
-              child: Container(
-                width: 180,
-                height: 80,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  color: Colors.white,
-                ),
-                child: const Center(
-                  child: Text(
-                    "Borisko",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.black, fontSize: 24),
-                  ),
-                ),
+                preferredSize: Size.fromHeight(0)),
+            flexibleSpace: FlexibleSpaceBar(
+              background: Image.asset("boris_valabik.jpg",
+                width: double.maxFinite,
+                fit: BoxFit.cover,
               ),
             ),
-          ],
-        ),
+          ),
+          SliverToBoxAdapter(
+            child: Column(
+              children: [
+                TextDetail(title: "O mne", context: crewMember.aboutMe),
+                TextDetail(title: "Vek", context: crewMember.age.toString()),
+                TextDetail(title: "Pozícia", context: crewMember.position),
+                TextDetail(title: "Vek", context: crewMember.age.toString()),
+                TextDetail(title: "Vek", context: crewMember.age.toString()),
+              TextDetail(title: "Vek", context: crewMember.age.toString()),
+          TextDetail(title: "Vek", context: crewMember.age.toString()),
+              TextDetail(title: "Vek", context: crewMember.age.toString()),
+          TextDetail(title: "Vek", context: crewMember.age.toString()),
+                Text("sdw"),
+                Text("sdw"),
+                Text("sdw"),
+                Text("sad"),
+                Text("sdw"),
+                Text("sdw"),
+                Text("sdw"),
+                Text("sad"),
+                Text("sdw"),
+                Text("sdw"),
+                Text("sdw"),
+                Text("sad"),
+                Text("sdw"),
+                Text("sdw"),
+                Text("sdw"),
+                Text("sad"),
+                Text("sdw"),
+                Text("sdw"),
+                Text("sdw"),
+                Text("sad"),
+                Text("sdw"),
+                Text("sdw"),
+                Text("sdw"),
+                Text("sad"),
+                Text("sdw"),
+                Text("sdw"),
+                Text("sdw"),
+                Text("sad"),
+                Text("sdw"),
+                Text("sdw"),
+                Text("sdw"),
+                Text("sad"),
+                Text("sdw"),
+                Text("sdw"),
+                Text("sdw"),
+                Text("sad"),
+                Text("sdw"),
+                Text("sdw"),
+                Text("sdw"),
+              ],
+            ),
+          )
+        ],
       ),
     );
   }

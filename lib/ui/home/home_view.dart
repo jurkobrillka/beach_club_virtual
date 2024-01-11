@@ -4,10 +4,9 @@ import 'package:beach_club_virtual/ui/home/widgets/button_sides_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../config/colors.dart';
-import '../../config/theme.dart';
 import '../../core/entity/sides_card_item.dart';
 import '../about_us/abou_us_view.dart';
+import '../about_us/about_us_functional_view.dart';
 import '../contact/contact_view.dart';
 import 'bloc/home_cubit.dart';
 
@@ -19,6 +18,8 @@ class HomeView extends StatefulWidget {
 class _HomeView extends State<HomeView> {
 
   late HomeCubit _bloc;
+
+
   ScrollController _scrollController = ScrollController();
 
   List<SidesCardItem> sidesCardItems = [
@@ -27,8 +28,15 @@ class _HomeView extends State<HomeView> {
     const SidesCardItem(
         urlImage: 'icons/online-support.png',
         title: "Kontakt",
-        subtitle: "Napíš nám")
+        subtitle: "Napíš nám ;)")
   ];
+
+  void scrollToCenter(){
+      final double centerPosition =
+          _scrollController.position.maxScrollExtent / 2;
+      _scrollController.animateTo(centerPosition,
+          duration: const Duration(milliseconds: 1000), curve: Curves.ease);
+  }
 
   @override
   void initState() {
@@ -44,6 +52,16 @@ class _HomeView extends State<HomeView> {
   }
 
   @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      scrollToCenter();
+    });
+
+    }
+
+  @override
   Widget build(BuildContext context) {
     return BlocProvider(
   create: (context) => _bloc,
@@ -54,38 +72,46 @@ class _HomeView extends State<HomeView> {
             begin: Alignment.bottomCenter,
             end: Alignment.topCenter,
             colors: [
-              AppColors.primaryContainer, // Light blue color for the bottom 75%
-              AppColors.backgroundWhite, // White color from bottom 75% to top
+              Colors.lightBlue, // Light blue color for the bottom 75%
+              Colors.white, // White color from bottom 75% to top
             ],
-            stops: [0.70, 0.70], // Stops at 75% from bottom
+            stops: [0.60, 0.60], // Stops at 75% from bottom
           ),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Expanded(
-              flex: 3,
+              flex: 1,
               child: Padding(
                 padding:
                 EdgeInsets.only(left: 24, bottom: 10, right: 24, top: 10),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(
-                      "Virtuálny",
-                      style: Theme.of(context).textTheme.titleLarge,
+                    Expanded(
+                      flex: 3,
+                      child: Container(
+                        alignment: Alignment.bottomLeft,
+                        child: Text(
+                          "Virtuálny",
+                          style: Theme.of(context).textTheme.displayLarge,
+                        ),
+                      ),
                     ),
-                    Text(
-                        "BeachClub Prešov",
-                        style: Theme.of(context).textTheme.titleMedium //TODO TU JE TO IMPORTANT POZOR!!!
+                    Expanded(
+                      flex: 1,
+                      child: Text(
+                          "BeachClub Prešov",
+                          style: Theme.of(context).textTheme.displaySmall  //TODO TU JE TO IMPORTANT POZOR!!!
+                      ),
                     )
                   ],
                 ),
               ),
             ),
             Expanded(
-              flex: 6,
+              flex: 2,
               child: Padding(
                 padding: const EdgeInsets.only(top: 12, bottom: 12),
                 child: Container(
@@ -104,7 +130,7 @@ class _HomeView extends State<HomeView> {
                             onTap: () => Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => AboutUsView())),
+                                    builder: (context) => AboutUsFunctionalView())),
                             child: ButtonSidesCard(item: sidesCardItems[0])),
                         const SizedBox(
                           width: 12,
@@ -120,7 +146,7 @@ class _HomeView extends State<HomeView> {
                                   ButtonNewsCard(state.news[0]),
                                   const SizedBox(width: 10),
                                   ButtonNewsCard(state.news[1]),
-                                  const SizedBox(width: 10),
+                                  const SizedBox(width: 10)
                                 ],
                               );
                             }
@@ -141,7 +167,7 @@ class _HomeView extends State<HomeView> {
               ),
             ),
             Expanded(
-              flex: 11,
+              flex: 2,
               child: Padding(
                 padding: const EdgeInsets.all(24.0),
                 child: Container(

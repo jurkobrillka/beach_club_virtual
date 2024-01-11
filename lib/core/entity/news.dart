@@ -1,4 +1,3 @@
-import 'package:beach_club_virtual/core/entity/trainer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class News{

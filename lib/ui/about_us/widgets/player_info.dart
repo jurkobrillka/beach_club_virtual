@@ -2,11 +2,19 @@ import 'package:beach_club_virtual/ui/about_crew_member/about_crew_member.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../../core/entity/crew_member.dart';
+
 class PlayerInfo extends StatelessWidget {
+
+  final CrewMember crewMember;
+
+  const PlayerInfo(this.crewMember);
+
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+      padding: const EdgeInsets.only(left: 12, right: 12, bottom: 15),
       child: Container(
         color: Colors.transparent,
         width: double.infinity,
@@ -14,17 +22,17 @@ class PlayerInfo extends StatelessWidget {
         child: Row(
           children: [
             Expanded(
-              flex: 5,
+              flex: 4,
               child: Material(
                 color: Colors.transparent,
                 child: InkWell(
                   onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => AboutCrewMember())),
+                          builder: (context) => AboutCrewMember(crewMember))),
                   child: Container(
                     decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
                         //color: Colors.blue,
                         image: DecorationImage(
                           image: AssetImage("boris_valabik.jpg"),
@@ -33,28 +41,29 @@ class PlayerInfo extends StatelessWidget {
                     width: double.infinity,
                     height: double.infinity,
                   ),
+
                 ),
               ),
             ),
             Expanded(
-              flex: 7,
+              flex: 9,
               child: Material(
                 color: Colors.transparent,
                 child: InkWell(
                   onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => AboutCrewMember())),
+                          builder: (context) => AboutCrewMember(crewMember))),
                   child: Container(
                     decoration: const BoxDecoration(
                       borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(20),
-                          bottomRight: Radius.circular(20)),
+                          topRight: Radius.circular(15),
+                          bottomRight: Radius.circular(15)),
                       color: Colors.white,
                       boxShadow: [
                         BoxShadow(
                           color: Colors.grey,
-                          blurRadius: 10.0, // Soften the shaodw
+                          blurRadius: 8.0, // Soften the shaodw
                           spreadRadius: 2.0,
                           offset: Offset(0.0, 0.0),
                         )
@@ -69,7 +78,7 @@ class PlayerInfo extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "BoroBejk",
+                            crewMember.forename +" "+ crewMember.surname, //TODO ERROR MOZNO
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 20,
@@ -77,16 +86,16 @@ class PlayerInfo extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 5),
-                          const Text(
-                            "Sexsymbol",
+                          Text(
+                            crewMember.position,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 12,
                               color: Colors.grey,
                             ),
                           ),
-                          const Text(
-                            "32 rokov",
+                          Text(
+                            crewMember.age.toString(),
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 12,
