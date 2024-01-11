@@ -20,7 +20,7 @@ TextTheme textTheme = TextTheme(
     fontSize: 57.0,
     fontWeight: FontWeight.w400,
     letterSpacing: -0.25,
-    color: AppColors.onSurface,
+    color: AppColors.primaryTitle,
     height: 1.14,
   ),
 
@@ -30,7 +30,7 @@ TextTheme textTheme = TextTheme(
     fontSize: 45.0,
     fontWeight: FontWeight.w400,
     letterSpacing: 0,
-    color: AppColors.onSurface,
+    color: AppColors.primaryTitle,
     height: 1.33,
   ),
 
@@ -40,7 +40,7 @@ TextTheme textTheme = TextTheme(
     fontSize: 36.0,
     fontWeight: FontWeight.w400,
     letterSpacing: 0,
-    color: AppColors.onSurface,
+    color: AppColors.primaryTitle,
     height: 1.33,
   ),
 
@@ -80,7 +80,7 @@ TextTheme textTheme = TextTheme(
     fontSize: 22.0,
     fontWeight: FontWeight.w400,
     letterSpacing: 0,
-    color: AppColors.onSurface,
+    color: AppColors.primaryTitle,
     height: 1.17,
   ),
 
@@ -90,7 +90,7 @@ TextTheme textTheme = TextTheme(
     fontSize: 16.0,
     fontWeight: FontWeight.w500,
     letterSpacing: 0.15,
-    color: AppColors.onSurface,
+    color: AppColors.primaryTitle,
     height: 1.33,
   ),
 
@@ -100,7 +100,7 @@ TextTheme textTheme = TextTheme(
     fontSize: 14.0,
     fontWeight: FontWeight.w500,
     letterSpacing: 0.1,
-    color: AppColors.onSurface,
+    color: AppColors.primaryTitle,
     height: 1.2,
   ),
 
@@ -110,7 +110,7 @@ TextTheme textTheme = TextTheme(
     fontSize: 14.0,
     fontWeight: FontWeight.w500,
     letterSpacing: 0.1,
-    color: AppColors.onSurface,
+    color: AppColors.primaryTitle,
     height: 1.0,
   ),
 
@@ -120,7 +120,7 @@ TextTheme textTheme = TextTheme(
     fontSize: 12.0,
     fontWeight: FontWeight.w500,
     letterSpacing: 0.5,
-    color: AppColors.onSurface,
+    color: AppColors.primaryTitle,
     height: 1.33,
   ),
 

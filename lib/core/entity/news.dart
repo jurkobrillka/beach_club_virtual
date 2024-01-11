@@ -6,13 +6,15 @@ class News{
   final String content;
   final Timestamp dateTime;
   final String autor;
+  final String imageUrl;
 
   News({
     required this.title,
     required this.subTitle,
     required this.content,
     required this.dateTime,
-    required this.autor});
+    required this.autor,
+    required this.imageUrl});
 
   Map<String, dynamic> toMap() {
     return {
@@ -21,6 +23,7 @@ class News{
       'content': this.content,
       'dateTime': dateTime,
       'autor': this.autor,
+      'imageUrl': this.imageUrl,
     };
   }
 
@@ -31,6 +34,7 @@ class News{
       content: map['content'] as String,
       dateTime: map['dateTime'] as Timestamp,
       autor: map['autor'] as String,
+      imageUrl: map['imageUrl'] as String,
     );
   }
 }
