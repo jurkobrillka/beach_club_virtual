@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../core/entity/sides_card_item.dart';
 import '../about_us/abou_us_view.dart';
+import '../about_us/about_us_functional_view.dart';
 import '../contact/contact_view.dart';
 import 'bloc/home_cubit.dart';
 
@@ -17,6 +18,8 @@ class HomeView extends StatefulWidget {
 class _HomeView extends State<HomeView> {
 
   late HomeCubit _bloc;
+
+
   ScrollController _scrollController = ScrollController();
 
   List<SidesCardItem> sidesCardItems = [
@@ -27,6 +30,13 @@ class _HomeView extends State<HomeView> {
         title: "Kontakt",
         subtitle: "Napíš nám ;)")
   ];
+
+  void scrollToCenter(){
+      final double centerPosition =
+          _scrollController.position.maxScrollExtent / 2;
+      _scrollController.animateTo(centerPosition,
+          duration: const Duration(milliseconds: 1000), curve: Curves.ease);
+  }
 
   @override
   void initState() {
@@ -40,6 +50,16 @@ class _HomeView extends State<HomeView> {
           duration: const Duration(milliseconds: 1000), curve: Curves.ease);
     });
   }
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      scrollToCenter();
+    });
+
+    }
 
   @override
   Widget build(BuildContext context) {
@@ -71,16 +91,19 @@ class _HomeView extends State<HomeView> {
                   children: <Widget>[
                     Expanded(
                       flex: 3,
-                      child: Text(
-                        "Virtuálny",
-                        style: Theme.of(context).textTheme.displayMedium,
+                      child: Container(
+                        alignment: Alignment.bottomLeft,
+                        child: Text(
+                          "Virtuálny",
+                          style: Theme.of(context).textTheme.displayLarge,
+                        ),
                       ),
                     ),
                     Expanded(
                       flex: 1,
                       child: Text(
                           "BeachClub Prešov",
-                          style: Theme.of(context).textTheme.labelMedium //TODO TU JE TO IMPORTANT POZOR!!!
+                          style: Theme.of(context).textTheme.displaySmall  //TODO TU JE TO IMPORTANT POZOR!!!
                       ),
                     )
                   ],
@@ -107,7 +130,7 @@ class _HomeView extends State<HomeView> {
                             onTap: () => Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => AboutUsView())),
+                                    builder: (context) => AboutUsFunctionalView())),
                             child: ButtonSidesCard(item: sidesCardItems[0])),
                         const SizedBox(
                           width: 12,
@@ -122,7 +145,8 @@ class _HomeView extends State<HomeView> {
                                 children: [
                                   ButtonNewsCard(state.news[0]),
                                   const SizedBox(width: 10),
-                                  ButtonNewsCard(state.news[1])
+                                  ButtonNewsCard(state.news[1]),
+                                  const SizedBox(width: 10)
                                 ],
                               );
                             }

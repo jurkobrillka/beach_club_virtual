@@ -1,4 +1,5 @@
 
+import 'package:beach_club_virtual/core/util/start_splash.dart';
 import 'package:beach_club_virtual/ui/home/home_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
