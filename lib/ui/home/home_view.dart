@@ -1,6 +1,7 @@
 import 'package:beach_club_virtual/dependency_container.dart';
 import 'package:beach_club_virtual/ui/home/widgets/button_news_card.dart';
 import 'package:beach_club_virtual/ui/home/widgets/button_sides_card.dart';
+import 'package:beach_club_virtual/ui/home/widgets/button_vertical_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -30,33 +31,33 @@ class _HomeView extends State<HomeView> {
         subtitle: "Napíš nám ;)")
   ];
 
-  void scrollToCenter() {
+  /*void scrollToCenter() {
     final double centerPosition =
         _scrollController.position.maxScrollExtent / 2;
     _scrollController.animateTo(centerPosition,
         duration: const Duration(milliseconds: 1000), curve: Curves.ease);
-  }
+  }*/
 
   @override
   void initState() {
     super.initState();
     _bloc = di();
     _bloc.fetchData();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    /*WidgetsBinding.instance.addPostFrameCallback((_) {
       final double centerPosition =
           _scrollController.position.maxScrollExtent / 2;
       _scrollController.animateTo(centerPosition,
           duration: const Duration(milliseconds: 1000), curve: Curves.ease);
-    });
+    });*/
   }
 
   @override
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    /*WidgetsBinding.instance.addPostFrameCallback((_) {
       scrollToCenter();
-    });
+    });*/
   }
 
   @override
@@ -113,60 +114,100 @@ class _HomeView extends State<HomeView> {
               Expanded(
                 flex: 2,
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 12, bottom: 12),
+                  padding: const EdgeInsets.only(top: 24, bottom: 24),
                   child: Container(
-                    //width: double.infinity,
-                    //height: double.infinity,
-                    //color: Colors.red,
-
                     child: Center(
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            BlocBuilder<HomeCubit, HomeState>(
-                              builder: (context, state) {
-                                if (state is HomeLoadingState) {
-                                  return CircularProgressIndicator();
-                                } else if (state is HomeSuccessState) {
-                                  return Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      InkWell(
-                                          onTap: () => Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      AboutUsFunctionalView())),
-                                          child: ButtonNewsCard(
-                                              state.news[0])),
-                                      const SizedBox(width: 10),
-                                      InkWell(
-                                          onTap: () => Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      AboutUsFunctionalView())),
-                                          child: ButtonNewsCard(
-                                              state.news[1])),
-                                      //const SizedBox(width: 10)
-                                    ],
-                                  );
-                                }
-                                return Icon(Icons.error);
-                              },
-                            ),
-                          ]),
+                      child: BlocBuilder<HomeCubit, HomeState>(
+                        builder: (context, state) {
+                          if (state is HomeLoadingState) {
+                            return CircularProgressIndicator();
+                          } else if (state is HomeSuccessState) {
+                            return Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Expanded(
+                                  flex: 1,
+                                  child: Padding(
+                                    padding:
+                                        EdgeInsets.only(left: 24, right: 2),
+                                    child: InkWell(
+                                        onTap: () => Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    AboutUsFunctionalView())),
+                                        child: ButtonNewsCard(state.news[0])),
+                                  ),
+                                ),
+                                const SizedBox(width: 10),
+                                Expanded(
+                                  flex: 1,
+                                  child: Padding(
+                                    padding:
+                                        EdgeInsets.only(left: 2, right: 24),
+                                    child: InkWell(
+                                        onTap: () => Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    AboutUsFunctionalView())),
+                                        child: ButtonNewsCard(state.news[1])),
+                                  ),
+                                ),
+                                //const SizedBox(width: 10)
+                              ],
+                            );
+                          }
+                          return Icon(Icons.error);
+                        },
+                      ),
                     ),
                   ),
                 ),
               ),
-              Expanded(
+               Expanded(
                 flex: 2,
                 child: Padding(
-                  padding: const EdgeInsets.all(24.0),
-                  child: Container(
-                    color: Colors.lightBlueAccent,
+                  padding: EdgeInsets.only(left: 24.0, right: 24, bottom: 24),
+                  child: Column(
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: Padding(
+                          padding: EdgeInsets.only(bottom: 5),
+                          child: InkWell(
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        AboutUsFunctionalView())),//TODO ZMENIT CESTU NA REZERVACIE PAGE
+                            /*onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        AboutUsFunctionalView())),*/
+                            child: ButtonVerticalCard("Rezervácie",
+                                "Rezervuj si ihrisko", "Tu a teraz!"),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Padding(
+                          padding: EdgeInsets.only(top: 5),
+                          child: InkWell(
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        AboutUsFunctionalView())), //TODO PREJST NA O NAS PAGE => HOTOVO HEHE
+                            child: ButtonVerticalCard("Kto je BeachClub?",
+                                "Spoznaj nás bližšie", "Kontakt"),
+                          ),
+                        ),
+                      ),
+                      //ButtonVerticalCard("tle", "sube", "nfo"),
+                    ],
                   ),
                 ),
               )

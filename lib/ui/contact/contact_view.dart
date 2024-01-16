@@ -74,7 +74,7 @@ class ContactPage extends StatelessWidget {
                   child: const Text(
                     "Napíš nám",
                     style: TextStyle(
-                      color: AppColors.surface
+                      color: AppColors.backgroundWhite
                     ),
                   ),
                   style: ElevatedButton.styleFrom(

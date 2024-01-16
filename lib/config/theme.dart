@@ -11,15 +11,15 @@ ThemeData lightTheme = ThemeData(
   //HOW TO SETP THEME POZRIET!~!!!!~!~!~!~!~!
 );
 
-TextTheme textTheme = TextTheme(
+TextTheme textTheme = const TextTheme(
   //displayMedium: TextStyle(
     //  fontFamily: "Roboto", fontSize: 28, fontWeight: FontWeight.bold),
 
   displayLarge: TextStyle(
     fontFamily: 'Roboto',
     fontSize: 57.0,
-    fontWeight: FontWeight.w400,
-    letterSpacing: -0.25,
+    fontWeight: FontWeight.w800,
+    letterSpacing: -0.5,
     color: AppColors.primaryTitle,
     height: 1.14,
   ),
@@ -48,9 +48,9 @@ TextTheme textTheme = TextTheme(
   headlineLarge: TextStyle(
     fontFamily: 'Roboto',
     fontSize: 32.0,
-    fontWeight: FontWeight.w400,
+    fontWeight: FontWeight.w700,
     letterSpacing: 0,
-    color: AppColors.onSurface,
+    color: AppColors.primaryTitle,
     height: 1.33,
   ),
 
@@ -60,7 +60,7 @@ TextTheme textTheme = TextTheme(
     fontSize: 28.0,
     fontWeight: FontWeight.w400,
     letterSpacing: 0,
-    color: AppColors.onSurface,
+    color: AppColors.backgroundWhite,
     height: 1.25,
   ),
 
@@ -70,14 +70,14 @@ TextTheme textTheme = TextTheme(
     fontSize: 24.0,
     fontWeight: FontWeight.w400,
     letterSpacing: 0,
-    color: AppColors.onSurface,
+    color: AppColors.primaryTitle,
     height: 1.17,
   ),
 
   // Title Large
   titleLarge: TextStyle(
     fontFamily: 'Roboto',
-    fontSize: 22.0,
+    fontSize: 20.0,
     fontWeight: FontWeight.w400,
     letterSpacing: 0,
     color: AppColors.primaryTitle,
@@ -130,7 +130,7 @@ TextTheme textTheme = TextTheme(
     fontSize: 11.0,
     fontWeight: FontWeight.w500,
     letterSpacing: 0.5,
-    color: AppColors.onSurface,
+    color: AppColors.backgroundWhite,
     height: 1.33,
   ),
 
@@ -140,7 +140,7 @@ TextTheme textTheme = TextTheme(
     fontSize: 16.0,
     fontWeight: FontWeight.w400,
     letterSpacing: 0.5,
-    color: AppColors.onSurface,
+    color: AppColors.backgroundWhite,
     height: 1.5,
   ),
 
@@ -150,7 +150,7 @@ TextTheme textTheme = TextTheme(
     fontSize: 14.0,
     fontWeight: FontWeight.w400,
     letterSpacing: 0.25,
-    color: AppColors.onSurface,
+    color: AppColors.backgroundWhite,
     height: 1.33,
   ),
 
@@ -160,7 +160,7 @@ TextTheme textTheme = TextTheme(
     fontSize: 12.0,
     fontWeight: FontWeight.w400,
     letterSpacing: 0.4,
-    color: AppColors.onSurface,
+    color: AppColors.backgroundWhite,
     height: 1.33,
   ),
 );
