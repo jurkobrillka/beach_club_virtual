@@ -1,4 +1,5 @@
 import 'package:beach_club_virtual/config/colors.dart';
+import 'package:beach_club_virtual/config/constants.dart';
 import 'package:beach_club_virtual/core/entity/news.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,7 @@ class ButtonNewsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation:3,
+      elevation:ELEVATION,
       child: Container(
         //width: 180,
         //height: 300,

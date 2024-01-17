@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../config/colors.dart';
+import '../../../config/constants.dart';
 
 class ButtonVerticalCard extends StatelessWidget{
 
@@ -15,10 +16,10 @@ class ButtonVerticalCard extends StatelessWidget{
   Widget build(BuildContext context) {
     // TODO: implement build
     return Card(
-      elevation: 3,
+      elevation: ELEVATION,
       child: Container(
         width: double.infinity,
-        //height: 280,
+        height: 140,
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(12)),
           color: AppColors.elevatedCardSurface,

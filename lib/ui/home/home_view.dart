@@ -2,6 +2,7 @@ import 'package:beach_club_virtual/dependency_container.dart';
 import 'package:beach_club_virtual/ui/home/widgets/button_news_card.dart';
 import 'package:beach_club_virtual/ui/home/widgets/button_sides_card.dart';
 import 'package:beach_club_virtual/ui/home/widgets/button_vertical_card.dart';
+import 'package:beach_club_virtual/ui/reservation/reservation_template_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,7 +21,6 @@ class HomeView extends StatefulWidget {
 class _HomeView extends State<HomeView> {
   late HomeCubit _bloc;
 
-  ScrollController _scrollController = ScrollController();
 
   List<SidesCardItem> sidesCardItems = [
     const SidesCardItem(
@@ -31,33 +31,18 @@ class _HomeView extends State<HomeView> {
         subtitle: "Napíš nám ;)")
   ];
 
-  /*void scrollToCenter() {
-    final double centerPosition =
-        _scrollController.position.maxScrollExtent / 2;
-    _scrollController.animateTo(centerPosition,
-        duration: const Duration(milliseconds: 1000), curve: Curves.ease);
-  }*/
 
   @override
   void initState() {
     super.initState();
     _bloc = di();
     _bloc.fetchData();
-    /*WidgetsBinding.instance.addPostFrameCallback((_) {
-      final double centerPosition =
-          _scrollController.position.maxScrollExtent / 2;
-      _scrollController.animateTo(centerPosition,
-          duration: const Duration(milliseconds: 1000), curve: Curves.ease);
-    });*/
   }
 
   @override
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
-    /*WidgetsBinding.instance.addPostFrameCallback((_) {
-      scrollToCenter();
-    });*/
   }
 
   @override
@@ -165,45 +150,74 @@ class _HomeView extends State<HomeView> {
                   ),
                 ),
               ),
-               Expanded(
+              Expanded(
                 flex: 2,
                 child: Padding(
-                  padding: EdgeInsets.only(left: 24.0, right: 24, bottom: 24),
-                  child: Column(
+                  padding: EdgeInsets.only(left: 24.0, right: 24, bottom: 0),
+                  child: ListView(
+                    //mainAxisSize: MainAxisSize.min,
                     children: [
-                      Expanded(
-                        flex: 1,
-                        child: Padding(
-                          padding: EdgeInsets.only(bottom: 5),
-                          child: InkWell(
-                            onTap: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        AboutUsFunctionalView())),//TODO ZMENIT CESTU NA REZERVACIE PAGE
-                            /*onTap: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        AboutUsFunctionalView())),*/
-                            child: ButtonVerticalCard("Rezervácie",
-                                "Rezervuj si ihrisko", "Tu a teraz!"),
-                          ),
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 5),
+                        child: InkWell(
+                          onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      AboutUsFunctionalView())),
+                          //TODO ZMENIT CESTU NA REZERVACIE PAGE
+                          /*onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      AboutUsFunctionalView())),*/
+                          child: ButtonVerticalCard("Rezervácie",
+                              "Rezervuj si ihrisko", "Tu a teraz!"),
                         ),
                       ),
-                      Expanded(
-                        flex: 1,
-                        child: Padding(
-                          padding: EdgeInsets.only(top: 5),
-                          child: InkWell(
-                            onTap: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        AboutUsFunctionalView())), //TODO PREJST NA O NAS PAGE => HOTOVO HEHE
-                            child: ButtonVerticalCard("Kto je BeachClub?",
-                                "Spoznaj nás bližšie", "Kontakt"),
-                          ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 5, bottom: 5),
+                        child: InkWell(
+                          onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      AboutUsFunctionalView())),
+                          //TODO PREJST NA O NAS PAGE => HOTOVO HEHE
+                          child: ButtonVerticalCard("Kto je BeachClub?",
+                              "Spoznaj nás bližšie", "Kontakt"),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 5, bottom: 5),
+                        child: InkWell(
+                          onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      AboutUsFunctionalView())),
+                          //TODO ZMENIT CESTU NA REZERVACIE PAGE
+                          /*onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      AboutUsFunctionalView())),*/
+                          child: ButtonVerticalCard(
+                              "Aktuality", "Čo sa u nás deje?", "Novinky"),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 5, bottom: 5),
+                        child: InkWell(
+                          onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ReservationTeplateView(
+                                      "Vyber si \nihrisko",
+                                      ButtonVerticalCard("ss", "ss", "ss")))),
+                          //TODO ZMENIT CESTU NA REZERVACIE PAGE
+                          child: ButtonVerticalCard(
+                              "Moje Konto", "user.name?", "Nastavenia"),
                         ),
                       ),
                       //ButtonVerticalCard("tle", "sube", "nfo"),
