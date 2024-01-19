@@ -2,6 +2,7 @@ import 'package:beach_club_virtual/dependency_container.dart';
 import 'package:beach_club_virtual/ui/home/widgets/button_news_card.dart';
 import 'package:beach_club_virtual/ui/home/widgets/button_sides_card.dart';
 import 'package:beach_club_virtual/ui/home/widgets/button_vertical_card.dart';
+import 'package:beach_club_virtual/ui/reservation/choosing_court/courts_view_widget.dart';
 import 'package:beach_club_virtual/ui/reservation/reservation_template_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -163,14 +164,10 @@ class _HomeView extends State<HomeView> {
                           onTap: () => Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>
-                                      AboutUsFunctionalView())),
+                                  builder: (context) => ReservationTeplateView(
+                                      "Vyber si \nihrisko",
+                                      CourtsViewWidget()))),
                           //TODO ZMENIT CESTU NA REZERVACIE PAGE
-                          /*onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      AboutUsFunctionalView())),*/
                           child: ButtonVerticalCard("Rezervácie",
                               "Rezervuj si ihrisko", "Tu a teraz!"),
                         ),
@@ -214,7 +211,7 @@ class _HomeView extends State<HomeView> {
                               MaterialPageRoute(
                                   builder: (context) => ReservationTeplateView(
                                       "Vyber si \nihrisko",
-                                      ButtonVerticalCard("ss", "ss", "ss")))),
+                                      CourtsViewWidget()))),
                           //TODO ZMENIT CESTU NA REZERVACIE PAGE
                           child: ButtonVerticalCard(
                               "Moje Konto", "user.name?", "Nastavenia"),
