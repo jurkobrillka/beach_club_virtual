@@ -33,10 +33,10 @@ class CourtsViewWidget extends StatelessWidget{
                 children: [
                   Expanded(
                       flex: 1,
-                      child: CourtWidget(1)),
+                      child: CourtWidget(3)),
                   Expanded(
                       flex:1,
-                      child: CourtWidget(2))
+                      child: CourtWidget(4))
                 ],
 
               ))
