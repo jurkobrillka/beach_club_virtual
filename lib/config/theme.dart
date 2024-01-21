@@ -8,6 +8,9 @@ ThemeData lightTheme = ThemeData(
   fontFamily: "Roboto",
   useMaterial3: true,
   textTheme: textTheme,
+  colorScheme: ColorScheme.fromSeed(
+    seedColor: AppColors.primaryTitle,
+  ),
   //HOW TO SETP THEME POZRIET!~!!!!~!~!~!~!~!
 );
 

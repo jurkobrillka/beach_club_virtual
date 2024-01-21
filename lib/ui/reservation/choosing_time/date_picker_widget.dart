@@ -1,14 +1,27 @@
 import 'package:beach_club_virtual/config/constants.dart';
+import 'package:beach_club_virtual/core/extensions/day_name_to_slovak.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../../config/colors.dart';
 
-class DatePickerWidget extends StatelessWidget {
+class DatePickerWidget extends StatefulWidget {
+  const DatePickerWidget({super.key});
+
+  @override
+  _DatePickerWidgetState createState() => _DatePickerWidgetState();
+}
+
+class _DatePickerWidgetState extends State<DatePickerWidget> {
+  DateTime selectedDate = DateTime.now();
+  DateTime todayDate = DateTime.now();
+
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 0, right: 0, top: 10, bottom: 10),
+      padding: EdgeInsets.only(left: 0, right: 0, top: 12, bottom: 12),
       child: Card(
         elevation: ELEVATION,
         child: Container(
@@ -18,17 +31,26 @@ class DatePickerWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                      style: Theme.of(context).textTheme.titleSmall,
-                      "1.1.2024"),
-                  Text(
-                    "sobora",
-                    style: Theme.of(context).textTheme.titleSmall,
-                  )
-                ],
+              Padding(
+                padding: EdgeInsets.only(left: 12),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 22
+                        ),
+                        "${selectedDate.day}.${selectedDate.month}.${selectedDate.year}"),
+                    Text(
+                      "${DateFormat('EEEE').format(selectedDate).dayNameToSlovak()}",
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          fontStyle: FontStyle.italic
+                      ),
+                    )
+                  ],
+                ),
               ),
               IconButton(
                 icon: Icon(
@@ -36,8 +58,19 @@ class DatePickerWidget extends StatelessWidget {
                   color: AppColors.primaryTitle,
                 ),
                 iconSize: 50,
-                onPressed: () {
-                  print("IDEM DALEJ");
+                onPressed: () async {
+                  final DateTime? dateTime = await showDatePicker(
+                      context: context,
+                      initialDate: selectedDate,
+                      firstDate: todayDate,
+                      helpText: "Zvoľ si dátum",
+                      lastDate: DateTime(2100));
+
+                  if (dateTime != null){
+                    setState((){
+                      selectedDate = dateTime;
+                    });
+                  }
                 },
               )
             ],
@@ -47,3 +80,4 @@ class DatePickerWidget extends StatelessWidget {
     );
   }
 }
+

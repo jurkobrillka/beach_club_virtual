@@ -179,7 +179,7 @@ class _HomeView extends State<HomeView> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      AboutUsFunctionalView())),
+                                      ContactPage())),
                           //TODO PREJST NA O NAS PAGE => HOTOVO HEHE
                           child: ButtonVerticalCard("Kto je BeachClub?",
                               "Spoznaj nás bližšie", "Kontakt"),
