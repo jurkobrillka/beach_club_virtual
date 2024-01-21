@@ -63,7 +63,12 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
                       context: context,
                       initialDate: selectedDate,
                       firstDate: todayDate,
+                      locale: Locale('sk'),
                       helpText: "Zvoľ si dátum",
+                      fieldLabelText: "Zadaj dátum vo formáte mm/dd/rrrr",
+                      fieldHintText: "mm/dd/rrrr",
+                      errorFormatText: "Zadal si zlý formát dátumu",
+                      errorInvalidText: "Na tento dátum rezervačka nie je možná",
                       lastDate: DateTime(2100));
 
                   if (dateTime != null){
